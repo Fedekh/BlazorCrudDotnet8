@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BlazorCrudDotnet8.Migrations
 {
-    [DbContext(typeof(IGameService))]
+    [DbContext(typeof(DataContext))]
     [Migration("20231231175130_prima")]
     partial class prima
     {

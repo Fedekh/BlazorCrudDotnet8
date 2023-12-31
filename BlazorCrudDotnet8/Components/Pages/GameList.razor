@@ -1,0 +1,40 @@
+﻿@page "/games"
+@inject IGameService GameService
+
+
+<h3>Lista videogiochi</h3>
+
+@if(games is null)
+{
+    <span>Loading....</span>
+}
+else if(games.Count == 0)
+{
+    <span>Nessun gioco trovato</span>
+
+}
+else
+{
+    <ul>
+        @foreach(Game game in games)
+        {
+            <li>@game.Name</li>
+        }
+    </ul>
+}
+
+
+@code {
+    List<Game> games = null;
+
+    /*
+     *  Viene chiamato quando il componente Blazor è in fase di inizializzazione. 
+     * Può essere utilizzato per eseguire operazioni asincrone
+     *  e aggiornare lo stato del componente prima che venga renderizzato
+     * assomiglia a mounted Vue o useEffect React
+     */
+    protected override async Task OnInitializedAsync()
+    {
+        games = await GameService.GetAllGames();
+    }
+}
